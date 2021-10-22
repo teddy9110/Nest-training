@@ -8,12 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharfinderService = void 0;
 const common_1 = require("@nestjs/common");
+const rxjs_1 = require("rxjs");
 let CharfinderService = class CharfinderService {
-    create(createCharfinderDto) {
+    create(createCharfinderDto, httpService) {
         return 'This action adds a new charfinder';
     }
-    findAll() {
-        return `This action returns all charfinder`;
+    async findAll() {
+        return this.httpService.get('https://rickandmortyapi.com/api/character')
+            .pipe((0, rxjs_1.map)(response => response.data));
     }
     findOne(id) {
         return `This action returns a #${id} charfinder`;

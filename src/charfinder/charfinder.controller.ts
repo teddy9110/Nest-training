@@ -21,8 +21,7 @@ export class CharfinderController {
 
   @Get('all-chars')
   async findAll(): Promise<Observable<any>> {
-    return this.httpService.get('https://rickandmortyapi.com/api/character')
-    .pipe(map(response => response.data));
+    return this.charfinderService.findAll();
   }
 
   @Get('find-char/:id')

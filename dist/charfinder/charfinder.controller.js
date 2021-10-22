@@ -28,8 +28,7 @@ let CharfinderController = class CharfinderController {
         return this.charfinderService.create(createCharfinderDto);
     }
     async findAll() {
-        return this.httpService.get('https://rickandmortyapi.com/api/character')
-            .pipe((0, rxjs_1.map)(response => response.data));
+        return this.charfinderService.findAll();
     }
     async findOne(id) {
         return this.httpService.get('https://rickandmortyapi.com/api/character/' + id)
