@@ -26,7 +26,7 @@ export class CharfinderController {
   }
 
   @Get('find-char/:id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.httpService.get('https://rickandmortyapi.com/api/character/'+id)
     .pipe(map(response => response.data));
   }

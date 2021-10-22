@@ -9,7 +9,7 @@ export declare class CharfinderController {
     constructor(charfinderService: CharfinderService, httpService: HttpService);
     create(createCharfinderDto: CreateCharfinderDto): string;
     findAll(): Promise<Observable<any>>;
-    findOne(id: string): Observable<any>;
+    findOne(id: string): Promise<Observable<any>>;
     update(id: string, updateCharfinderDto: UpdateCharfinderDto): string;
     remove(id: string): string;
 }

@@ -31,7 +31,7 @@ let CharfinderController = class CharfinderController {
         return this.httpService.get('https://rickandmortyapi.com/api/character')
             .pipe((0, rxjs_1.map)(response => response.data));
     }
-    findOne(id) {
+    async findOne(id) {
         return this.httpService.get('https://rickandmortyapi.com/api/character/' + id)
             .pipe((0, rxjs_1.map)(response => response.data));
     }
@@ -60,7 +60,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CharfinderController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
