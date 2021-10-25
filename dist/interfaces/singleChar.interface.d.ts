@@ -1,4 +1,4 @@
-export interface singleChar {
+export interface SingleChar {
     results: [
         {
             id: 1;

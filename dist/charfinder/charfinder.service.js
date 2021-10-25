@@ -13,8 +13,8 @@ exports.CharfinderService = void 0;
 const common_1 = require("@nestjs/common");
 const axios_1 = require("@nestjs/axios");
 const rxjs_1 = require("rxjs");
-const allchars_interface_1 = require("../interfaces/allchars.interface");
-const singleChar_interface_1 = require("../interfaces/singleChar.interface");
+const Allchars_interface_1 = require("../interfaces/Allchars.interface");
+const SingleChar_interface_1 = require("../interfaces/SingleChar.interface");
 let CharfinderService = class CharfinderService {
     constructor(httpService) {
         this.httpService = httpService;

@@ -5,8 +5,8 @@ import { HttpService } from '@nestjs/axios';
 import { Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { map } from 'rxjs';
-import { allChars } from 'src/interfaces/allchars.interface';
-import { singleChar } from 'src/interfaces/singleChar.interface';
+import { AllChars } from 'src/interfaces/Allchars.interface';
+import { SingleChar } from 'src/interfaces/SingleChar.interface';
 @Injectable()
 export class CharfinderService {
   constructor(
@@ -17,12 +17,12 @@ export class CharfinderService {
     return 'This action adds a new charfinder';
   }
 
-  async findAll(): Promise<Observable<allChars>> {
+  async findAll(): Promise<Observable<AllChars>> {
     return this.httpService.get('https://rickandmortyapi.com/api/character')
     .pipe(map(response => response.data));
   }
 
-  async findOne(id: number): Promise<Observable<singleChar>> {
+  async findOne(id: number): Promise<Observable<SingleChar>> {
     return this.httpService.get('https://rickandmortyapi.com/api/character/'+id)
     .pipe(map(response => response.data));
   }
