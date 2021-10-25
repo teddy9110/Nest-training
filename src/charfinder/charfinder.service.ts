@@ -3,23 +3,28 @@ import { CreateCharfinderDto } from './dto/create-charfinder.dto';
 import { UpdateCharfinderDto } from './dto/update-charfinder.dto';
 import { HttpService } from '@nestjs/axios';
 import { Observable } from 'rxjs';
+import { AxiosResponse } from 'axios';
 import { map } from 'rxjs';
-
+import { allChars } from 'src/interfaces/allchars.interface';
+import { singleChar } from 'src/interfaces/singleChar.interface';
 @Injectable()
 export class CharfinderService {
-  create(createCharfinderDto: CreateCharfinderDto,
-    httpService: HttpService,
-    ) {
+  constructor(
+    private httpService: HttpService
+    ) {}
+
+  create(createCharfinderDto: CreateCharfinderDto) {
     return 'This action adds a new charfinder';
   }
 
-  async findAll(): Promise<Observable<any>> {
+  async findAll(): Promise<Observable<allChars>> {
     return this.httpService.get('https://rickandmortyapi.com/api/character')
     .pipe(map(response => response.data));
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} charfinder`;
+  async findOne(id: number): Promise<Observable<singleChar>> {
+    return this.httpService.get('https://rickandmortyapi.com/api/character/'+id)
+    .pipe(map(response => response.data));
   }
 
   update(id: number, updateCharfinderDto: UpdateCharfinderDto) {

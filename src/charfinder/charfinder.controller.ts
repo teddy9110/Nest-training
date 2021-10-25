@@ -3,8 +3,8 @@ import { CharfinderService } from './charfinder.service';
 import { CreateCharfinderDto } from './dto/create-charfinder.dto';
 import { UpdateCharfinderDto } from './dto/update-charfinder.dto';
 import { HttpService } from '@nestjs/axios';
-import { Observable } from 'rxjs';
-import { AxiosResponse } from 'axios';
+
+
 import { map } from 'rxjs';
 
 @Controller('charfinder')
@@ -20,14 +20,17 @@ export class CharfinderController {
   }
 
   @Get('all-chars')
-  async findAll(): Promise<Observable<any>> {
-    return this.charfinderService.findAll();
+  async findAll() {
+    const allchars = this.charfinderService.findAll();
+    console.log(allchars);
+    return allchars
   }
 
   @Get('find-char/:id')
-  async findOne(@Param('id') id: string) {
-    return this.httpService.get('https://rickandmortyapi.com/api/character/'+id)
-    .pipe(map(response => response.data));
+  async findOne(@Param('id') id: number) {
+    const singleChar = this.charfinderService.findOne(id);
+    console.log(singleChar);
+    return singleChar
   }
 
   @Patch(':id')

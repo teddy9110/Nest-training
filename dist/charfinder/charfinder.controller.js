@@ -18,7 +18,6 @@ const charfinder_service_1 = require("./charfinder.service");
 const create_charfinder_dto_1 = require("./dto/create-charfinder.dto");
 const update_charfinder_dto_1 = require("./dto/update-charfinder.dto");
 const axios_1 = require("@nestjs/axios");
-const rxjs_1 = require("rxjs");
 let CharfinderController = class CharfinderController {
     constructor(charfinderService, httpService) {
         this.charfinderService = charfinderService;
@@ -28,11 +27,14 @@ let CharfinderController = class CharfinderController {
         return this.charfinderService.create(createCharfinderDto);
     }
     async findAll() {
-        return this.charfinderService.findAll();
+        const allchars = this.charfinderService.findAll();
+        console.log(allchars);
+        return allchars;
     }
     async findOne(id) {
-        return this.httpService.get('https://rickandmortyapi.com/api/character/' + id)
-            .pipe((0, rxjs_1.map)(response => response.data));
+        const singleChar = this.charfinderService.findOne(id);
+        console.log(singleChar);
+        return singleChar;
     }
     update(id, updateCharfinderDto) {
         return this.charfinderService.update(+id, updateCharfinderDto);
@@ -58,7 +60,7 @@ __decorate([
     (0, common_1.Get)('find-char/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CharfinderController.prototype, "findOne", null);
 __decorate([
